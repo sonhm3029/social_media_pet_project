@@ -1,5 +1,5 @@
 CREATE TABLE users (
-    id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+    id TEXT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     image TEXT NOT NULL
 );
@@ -11,7 +11,7 @@ CREATE TABLE pins (
     destination TEXT NOT NULL,
     category VARCHAR(50),
     image TEXT NOT NULL,
-    postedBy uuid REFERENCES users(id) ON DELETE CASCADE
+    postedBy TEXT REFERENCES users(id) ON DELETE CASCADE
 
 );
 
@@ -19,10 +19,10 @@ CREATE TABLE pins (
 CREATE TABLE comments (
     pin_id SERIAL NOT NULL,
     content TEXT NOT NULL,
-    postedBy uuid REFERENCES users(id) ON DELETE CASCADE,
+    postedBy TEXT REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (pin_id) REFERENCES pins(id) ON DELETE CASCADE
 );
 CREATE TABLE saves (
-    savedBy uuid REFERENCES users(id) ON DELETE CASCADE,
+    savedBy TEXT REFERENCES users(id) ON DELETE CASCADE,
     pin_id SERIAL REFERENCES pins(id) ON DELETE CASCADE
 );

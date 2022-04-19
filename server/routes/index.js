@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const Users = require("./users");
+const prefix = "/api/v1";
 
 router.get("/", (req, res, next)=> {
     res.send("Hello world!");
@@ -7,5 +9,6 @@ router.get("/", (req, res, next)=> {
 
 
 module.exports = function (app) {
-    app.use("/", router);
+    app.use(`${prefix}/`, router);
+    app.use(`${prefix}/users`, Users);
 }

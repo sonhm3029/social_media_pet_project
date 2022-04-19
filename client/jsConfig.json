@@ -7,7 +7,10 @@
         "@utils/*": [ "src/utils/*"],
         "@assets/*": [ "src/assets/*"],
         "@images/*": [ "src/assets/images/*"],
-        "@views/*": [ "src/views/*"]
+        "@videos/*": [ "src/assets/videos/*"],
+        "@views/*": [ "src/views/*"],
+        "@data-access/*": [ "src/data-access/*"],
+        "@Context/*": [ "src/Context/*"]
     }
     }
   }
