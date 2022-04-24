@@ -14,3 +14,7 @@ export default {
         return axios(config);
     }
 }
+
+String.prototype.cloudinaryDownloadFormat = function() {
+    return this.replace("/upload", "/upload/fl_attachment/")
+}

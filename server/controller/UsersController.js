@@ -42,7 +42,7 @@ class UsersController {
                 if(response) {
                     res.status(200).json({
                         status:"success",
-                        data: response?.rows[0],
+                        data: (response?.rows?.length>1)?response?.rows:response?.rows[0],
                         total: response?.rows?.length
                     })
                 }

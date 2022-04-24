@@ -1,16 +1,29 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { UserContext } from "./UserContext";
 import UserAccess from "@data-access/users";
+import pinsAccess from '@src/data-access/pins';
 
 
 export const Context = createContext();
 export default function ContextProvider({children}) {
 
     const [user, setUser] = useState({});
+    const [pins, setPins] = useState([]);
+    const [loadingPins, setLoadingPins] = useState(true);
+
     const getUser = async(id) => {
         const response = await UserAccess.get(`/${id}`);
         return response;
     }
+
+    const getPins = async(categoryId) => {
+        
+        const res = await pinsAccess.get(`?category=${categoryId}`);
+        if(res) {
+          setPins(res?.data?.data);
+          setLoadingPins(false);
+        }
+      }
 
 
     useEffect(()=> {
@@ -37,6 +50,11 @@ export default function ContextProvider({children}) {
                 user: {
                     user, 
                     setUser
+                },
+                pins: {
+                    pins,
+                    getPins,
+                    loadingPins
                 }
             }
         }>

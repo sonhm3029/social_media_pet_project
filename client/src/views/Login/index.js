@@ -1,18 +1,20 @@
-import React from 'react';
+import React, {
+    useContext
+} from 'react';
 import GoogleLogin from 'react-google-login';
 import {FcGoogle} from "react-icons/fc";
 // import dotenv from "dotenv";
 import { toast } from 'react-toastify';
 import userAccess from "@data-access/users";
 import { useNavigate } from 'react-router-dom';
+import { Context } from '@src/Context';
 
 const Login = () => {
-
+    const {user: {setUser}} = useContext(Context);
     const navigate = useNavigate();
 
     const isExist = async(id) => {
         const res = await userAccess.get(`/${id}`);
-        console.log(res);
         if(res?.data?.data?.id && res?.data?.data?.total!==0 ) {
             return true;
         }
@@ -31,7 +33,12 @@ const Login = () => {
                     const newUser = 
                         await userAccess.post({id, name, image});
                 }
-                localStorage.setItem('user', JSON.stringify({id, name, image}));
+                setUser({
+                    id,
+                    name,
+                    image
+                })
+                localStorage.setItem('user', JSON.stringify({id, name, image, token: response?.tokenObj?.access_token}));
                 toast.success("Login success!");
                 navigate("/");
             }else {

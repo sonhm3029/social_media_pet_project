@@ -10,7 +10,8 @@
         "@videos/*": [ "src/assets/videos/*"],
         "@views/*": [ "src/views/*"],
         "@data-access/*": [ "src/data-access/*"],
-        "@Context/*": [ "src/Context/*"]
+        "@Context/*": [ "src/Context/*"],
+        "@constants/*": [ "src/constants/*"]
     }
     }
   }

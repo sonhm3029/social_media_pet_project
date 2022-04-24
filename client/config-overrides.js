@@ -13,6 +13,7 @@ module.exports = function override(config, env) {
             "@views": path.resolve(__dirname, 'src/views'),
             "@data-access": path.resolve(__dirname, 'src/data-access'),
             "@Context": path.resolve(__dirname, 'src/Context'),
+            "@constants": path.resolve(__dirname, 'src/constants')
         }
     };
 

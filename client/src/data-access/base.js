@@ -3,6 +3,7 @@ import clientUtils from "@utils";
 export default ({url})=> ({
     get(param) {
         const requestParam = url + param;
+        
         return new Promise((resolve, reject)=> {
             clientUtils.sendRequest("get", requestParam)
                         .then(res => {

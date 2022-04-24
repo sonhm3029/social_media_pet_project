@@ -3,29 +3,8 @@ import logo from "@images/logo.png";
 import { Link, NavLink } from 'react-router-dom';
 import {RiHomeFill} from "react-icons/ri";
 import {IoIosArrowForward} from "react-icons/io";
+import { categories } from '@src/constants';
 
-
-const categories = [
-  {
-    name:'Animals'
-  },
-  {
-    name:'Wallapapers'
-  },
-  {
-    name:'Photography'
-  },
-  {
-    name:'Gaming'
-  },
-  {
-    name:'Coding'
-  },
-  {
-    name:'Other'
-  },
-
-]
 
 
 const Sidebar = ({user, closeToggle}) => {

@@ -8,6 +8,8 @@ const Route = require("./routes");
 app.use(morgan('tiny'));
 app.use(cors());
 app.use(express.json());
+// Static files
+app.use(express.static('uploads'))
 
 Route(app);
 
