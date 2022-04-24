@@ -10,6 +10,18 @@ class PinsController{
             if(req?.params?.id) {
                 query += ` AND p.id = ${req?.params?.id}`
             }
+            if(req?.query?.userId&& req?.query?.userId !=="undefined") {
+                query += ` AND userid = '${req?.query?.userId}'`
+            }
+            //  2 cách:
+            // Cách 1:
+            // if(req?.query?.saveById&& req?.query?.saveById !=="undefined") {
+            //     query += ` AND savers @> ARRAY['${req?.query?.saveById}']`
+            // }
+            // Cách 2:
+            if(req?.query?.saveById&& req?.query?.saveById !=="undefined") {
+                query += ` AND '${req?.query?.saveById}' = ANY(savers)`
+            }
 
             const response = await db.query(
                 `

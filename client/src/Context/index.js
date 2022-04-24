@@ -17,8 +17,11 @@ export default function ContextProvider({children}) {
     }
 
     const getPins = async(categoryId) => {
-        
-        const res = await pinsAccess.get(`?category=${categoryId}`);
+        var param="";
+        if(categoryId) {
+            param = `?category=${categoryId}`
+        }
+        const res = await pinsAccess.get(param);
         if(res) {
           setPins(res?.data?.data);
           setLoadingPins(false);
@@ -41,7 +44,9 @@ export default function ContextProvider({children}) {
                 console.log(err);
             })
         }
+        getPins();
     },[])
+
     
 
     return (
