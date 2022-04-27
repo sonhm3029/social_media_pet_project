@@ -2,11 +2,17 @@ import axios from "axios";
 
 
 export default {
+    auth:"",
     serverUrl: "http://localhost:5000",
     sendRequest(method="get", url, body) {
         let config = {
             method,
-            url
+            url,
+            headers: {
+                // 'Authorization':localStorage.getItem("token")
+                'Authorization':this.auth,
+            }
+            
         };
         if(method?.toLowerCase() !=="get") {
             config.data = {...body};

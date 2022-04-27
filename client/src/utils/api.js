@@ -5,5 +5,5 @@ export default {
     pins: `${prefix}/pins`,
     saves:`${prefix}/saves`,
     upload:`${prefix}/upload`,
-    comments:`${prefix}/comments`
+    comments:`${prefix}/comments`,
 }

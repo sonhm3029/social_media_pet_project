@@ -26,3 +26,5 @@ CREATE TABLE saves (
     savedBy TEXT REFERENCES users(id) ON DELETE CASCADE,
     pin_id SERIAL REFERENCES pins(id) ON DELETE CASCADE
 );
+
+-- SET client_encoding TO 'UTF8';

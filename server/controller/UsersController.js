@@ -8,11 +8,14 @@ class UsersController {
             try {
                 const response = await db.query(
                     `INSERT INTO users(id,name, image) `+
-                    `VALUES($1, $2, $3) RETURNING *`,
+                    `
+                    VALUES($1, $2, $3)
+                    ON CONFLICT(id) DO NOTHING
+                    RETURNING *`,
                     [id,name, image]
                 );
                 if(response) {
-                    
+                    console.log(response);
                     res.status(201).json({
                         status:"success",
                         data:response?.rows[0]
@@ -28,7 +31,7 @@ class UsersController {
 
         async getUser (req, res, next) {
             const id = req?.params?.id;
-            const query = id?"id=$1":"$1";
+            const query = (id&&id!=="undefined")?"id=$1":"$1";
             console.log("query",`SELECT * FROM users `+
             `WHERE ${query}
             ${[(id||"true")]}`)

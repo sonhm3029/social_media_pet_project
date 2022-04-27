@@ -8,18 +8,16 @@ import { toast } from 'react-toastify';
 import userAccess from "@data-access/users";
 import { useNavigate } from 'react-router-dom';
 import { Context } from '@src/Context';
+import axios from 'axios';
+import clientUtils from "@utils/";
 
-const Login = () => {
-    const {user: {setUser}} = useContext(Context);
+
+const Login = ({setIsAuth}) => {
+    const {
+        user: {setUser},
+    } = useContext(Context);
     const navigate = useNavigate();
 
-    const isExist = async(id) => {
-        const res = await userAccess.get(`/${id}`);
-        if(res?.data?.data?.id && res?.data?.data?.total!==0 ) {
-            return true;
-        }
-        return false;
-    }
 
     const responseGoogle = async(response) => {
         try {
@@ -28,17 +26,31 @@ const Login = () => {
                 const name = profile?.name;
                 const image = profile?.imageUrl;
                 const id = profile?.googleId;
-                
-                if(!await isExist(id)) {
+ 
+                if(true) {
                     const newUser = 
-                        await userAccess.post({id, name, image});
+                    await axios({
+                        method:"post",
+                        url:"http://localhost:5000/api/v1/users",
+                        data: {
+                            id,
+                            name, 
+                            image
+                        },
+                        headers:{
+                            'Authorization':response?.tokenId
+                        }
+                    })
                 }
                 setUser({
                     id,
                     name,
                     image
-                })
-                localStorage.setItem('user', JSON.stringify({id, name, image, token: response?.tokenObj?.access_token}));
+                });
+                setIsAuth(true);
+                clientUtils.auth = response?.tokenId
+                localStorage.setItem('token', response?.tokenId);
+                localStorage.setItem('user', JSON.stringify({id, name, image}));
                 toast.success("Login success!");
                 navigate("/");
             }else {
@@ -97,4 +109,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Login;

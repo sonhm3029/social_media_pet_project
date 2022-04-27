@@ -137,11 +137,13 @@ const PinDetail = ({user}) => {
           {
             pinComments?.map( (comment, index) => (
               <div className='flex gap-2 mt-5 items-center bg-white rounded-lg' key={index}>
-                <img
-                  src={comment?.postedby?.image}
-                  alt="user-profile"
-                  className='w-10 h-10 rounded-full cursor-pointer'
-                />
+                <Link to={`/user-profile/${comment?.postedby?.id}`}>
+                  <img
+                    src={comment?.postedby?.image}
+                    alt="user-profile"
+                    className='w-10 h-10 rounded-full cursor-pointer'
+                  />
+                </Link>
                 <div
                   className='flex flex-col'
                 >
