@@ -60,8 +60,13 @@ const UserProfile = ({currentUser}) => {
   },[text, userId])
 
   const logout = () => {
-    localStorage.clear();
-    navigate('/login');
+    try {
+      localStorage.clear();
+      navigate('/login');
+      toast.success("Logout success!")
+    } catch (error) {
+      toast.error(error.message);
+    }
   }
 
   if(!user) {

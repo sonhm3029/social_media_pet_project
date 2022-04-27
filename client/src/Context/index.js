@@ -29,23 +29,23 @@ export default function ContextProvider({children}) {
       }
 
 
-    // useEffect(()=> {
-    //     const userProfile = JSON.parse(localStorage.getItem("user"));
+    useEffect(()=> {
+        const userProfile = JSON.parse(localStorage.getItem("user"));
         
-    //     if(userProfile?.id) {
-    //         const response = getUser(userProfile?.id);
-    //         response
-    //         .then(res => {  
-    //             if(res?.data?.data?.id) {
-    //                 setUser(res?.data?.data)
-    //             }
-    //         })
-    //         .catch(err => {
-    //             console.log(err);
-    //         })
-    //     }
-    //     getPins();
-    // },[])
+        if(userProfile?.id) {
+            const response = getUser(userProfile?.id);
+            response
+            .then(res => {  
+                if(res?.data?.data?.id) {
+                    setUser(res?.data?.data)
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        }
+        getPins();
+    },[])
 
     
 

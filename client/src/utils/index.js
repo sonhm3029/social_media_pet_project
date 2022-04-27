@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 export default {
-    auth:"",
+    auth:localStorage.getItem("token"),
     serverUrl: "http://localhost:5000",
     sendRequest(method="get", url, body) {
         let config = {
