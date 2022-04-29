@@ -31,7 +31,7 @@ const Login = ({setIsAuth}) => {
                     const newUser = 
                     await axios({
                         method:"post",
-                        url:"http://localhost:5000/api/v1/users",
+                        url:"https://socialmediaapp2329.herokuapp.com/api/v1/users",
                         data: {
                             id,
                             name, 

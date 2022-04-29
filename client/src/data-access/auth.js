@@ -4,7 +4,7 @@ export default {
     async checkAuth(token) {
         const res = await axios({
             method:"post",
-            url:"http://localhost:5000/verify",
+            url:"https://socialmediaapp2329.herokuapp.com/verify",
             headers: {
                 'Authorization':token
             }
