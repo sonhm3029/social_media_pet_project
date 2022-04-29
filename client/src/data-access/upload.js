@@ -19,7 +19,10 @@ export default {
                 method:"post",
                 url,
                 data: formData,
-                headers: {"Content-Type":"multipart/form-data"},
+                headers: {
+                    "Content-Type":"multipart/form-data",
+                    'Authorization':clientUtils.auth
+                },
             })
             if(res) return res;
         } catch (error) {

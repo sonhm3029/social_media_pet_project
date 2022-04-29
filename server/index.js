@@ -1,11 +1,12 @@
 const express = require("express");
 const app = express();
-const PORT = 5000;
-const morgan = require("morgan");
+const PORT = process.env.PORT || 5000;
+// const morgan = require("morgan");
 const cors = require("cors");
 const Route = require("./routes");
 
-app.use(morgan('tiny'));
+// if( window.location.origin ==="l")
+// app.use(morgan('tiny'));
 app.use(cors());
 app.use(express.json());
 // Static files

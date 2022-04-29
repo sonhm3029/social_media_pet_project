@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon --inspect index.js"
+    "start": "node index.js",
+    "dev": "nodemon --inspect index.js"
   },
   "dependencies": {
     "cloudinary": "^1.29.1",
