@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default {
     auth:localStorage.getItem("token"),
-    serverUrl: "https://socialmediaapp2329.herokuapp.com/",
+    serverUrl: "https://socialmediaapp2329.herokuapp.com",
     sendRequest(method="get", url, body) {
         let config = {
             method,
